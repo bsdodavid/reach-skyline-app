@@ -100,7 +100,7 @@ function UserDetails() {
                         sx={{ border: 0 }}
                         showToolbar
                     />
-                </Paper>):<NotifyUsers message={message} isOpen={isOpen} handleClose={handleSnackBarClose}/>
+                </Paper>):<NotifyUsers message={message} isOpen={isOpen} severity="info" handleClose={handleSnackBarClose}/>
             }
             {
                 showModal && <ExpandedList user={rowData} modalOpen={showModal} onClose={()=>setShowModal(false)}/>

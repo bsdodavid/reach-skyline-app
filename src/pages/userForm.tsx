@@ -12,6 +12,7 @@ import { SAVE_USER_API } from '../constants/constants';
 import Loading from './overlays/loading';
 
 function UserForm() {
+    const severity = "error";
     const sourceArray:string[] = ['Website', 'Instagram', 'Referral', 'Other'];
     const [messages, setMessages] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -109,7 +110,7 @@ function UserForm() {
 
     return (
         <>
-        {messages && messages.length>0 && messages.map((err:string)=><NotifyUsers key={err} message={err} isOpen={isOpen} handleClose={handleSnackBarClose}/>)}
+        {messages && messages.length>0 && messages.map((err:string)=><NotifyUsers key={err} message={err} severity="error" isOpen={isOpen} handleClose={handleSnackBarClose}/>)}
         <Box component="form" id='user-form'
             onSubmit={handleSubmit} sx={{width:1, display:'flex', flexDirection:'column', justifyContent:'space-evenly'}}>
 

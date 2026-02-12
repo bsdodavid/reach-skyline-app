@@ -3,8 +3,10 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { Alert, type AlertColor, type AlertProps, type AlertPropsColorOverrides } from '@mui/material';
+import type { OverridableStringUnion } from '@mui/types';
 
-export default function NotifyUsers({message, isOpen, handleClose}:{message:string, isOpen:boolean, handleClose:()=>void}) {
+export default function NotifyUsers({message, isOpen, severity, handleClose}:{message:string, isOpen:boolean, severity: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, handleClose:()=>void}) {
 
   // const handleClose = (
   //   event: React.SyntheticEvent | Event,
@@ -37,11 +39,16 @@ export default function NotifyUsers({message, isOpen, handleClose}:{message:stri
     <div>
       <Snackbar
         open={isOpen}
-        autoHideDuration={6000}
+        autoHideDuration={8000}
         onClose={handleClose}
-        message={message}
-        action={action}
-      />
+      >
+        <Alert onClose={handleClose}
+            severity={severity}
+            variant="filled"
+            sx={{ width: '100%' }}>
+            {message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
