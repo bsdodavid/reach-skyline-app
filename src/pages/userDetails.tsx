@@ -29,12 +29,12 @@ function UserDetails() {
     const USER_HEADER_COLUMN:GridColDef<FormFields>[] =[
         { field:"id", headerName: 'ID', width: 30 },
         { field:"userName", headerName: 'User', width: 130 },
-        { field:"email", headerName: 'Email', width: 170 },
+        { field:"email", headerName: 'Email', width: 190 },
         { field:"phone", headerName: 'Phone', width: 130 },
         { field:"company", headerName: 'Company', width: 130 },
-        { field:"message", headerName: 'Message', width: 300 },
-        { field:"source", headerName: 'Source', width: 130 },
-        { field: 'action', headerName: 'Action', width: 150, sortable: false, renderCell:(params:GridRenderCellParams<FormFields>)=>(
+        { field:"message", headerName: 'Message', width: 350 },
+        { field:"source", headerName: 'Source', width: 100 },
+        { field: 'action', headerName: 'Action', width: 200, sortable: false, renderCell:(params:GridRenderCellParams<FormFields>)=>(
             <Button
                 variant='contained'
                 size='small'
@@ -45,7 +45,7 @@ function UserDetails() {
                     company:params.row.company,
                     message:params.row.message,
                     source:params.row.source
-                }); console.log(typeof(params.row));}}
+                }); }}
             >Show message</Button>
         )}
         
@@ -84,10 +84,19 @@ function UserDetails() {
                     <DataGrid
                         rows={userData}
                         columns={USER_HEADER_COLUMN}
-                        initialState={{pagination:{paginationModel}}}
+                        initialState={{pagination:{paginationModel},
+                            filter:{
+                                filterModel:{
+                                    items:[]
+                                }
+                            }        
+                        }}
+                        disableColumnFilter
+                        disableColumnSelector
+                        disableDensitySelector
                         pageSizeOptions={[5,10]}
                         sx={{ border: 0 }}
-                        
+                        showToolbar
                     />
                 </Paper>):<NotifyUsers message={message} isOpen={isOpen} handleClose={handleSnackBarClose}/>
             }
