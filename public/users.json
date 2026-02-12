@@ -1,0 +1,32 @@
+{
+    "users":[
+        {
+            "id":1,
+            "userName": "Santhana Rajan",
+            "email": "bsdodavid@gmail.com",
+            "phone": "08524082632",
+            "company": "bizmetric",
+            "message": "Dear Hiring Manager,I am writing to express my interest in transitioning into the IT field as a Software Developer, driven by a strong and sustained passion for software development. While my formal work experience may come from a different background, my consistent hands-on involvement in building real-world applications has firmly shaped my career direction toward technology.Overtime,IhavedevelopedandworkedonmultipleprojectsusingAngular,React,andReactNative,focusingoncreatingfunctional,user-focusedapplications.Ihavealsobuiltlogic-intensiveprojectsusingMQL5,whichstrengthenedmyproblem-solvingskillsandmyabilitytoworkwithstructured,performance-sensitivecode.Theseexperienceshavegivenmepracticalexposuretoapplicationarchitecture,authenticationflows,debugging,andwritingmaintainablecode.Whatdrawsmetosoftwaredevelopmentistheprocessofturningideasintoworkingsystemsandcontinuouslyimprovingthemthroughlearningandexperimentation.Iactivelyupskillmyself,exploremoderndevelopmentpractices,andenjoysolvingtechnicalchallengesthatrequirebothanalyticalthinkingandcreativity.IamnowseekinganopportunitywhereIcancontributeasadeveloper,growwithinaprofessionalengineeringenvironment,andaddvaluethroughdedication,adaptability,andastrongwillingnesstolearn.Iamconfidentthatmyhands-onexperienceandgenuineenthusiasmforsoftwaredevelopmentwillallowmetoquicklyintegrateandcontributeeffectivelytoyourteam.Thankyouforconsideringmyapplication.Iwouldwelcometheopportunitytodiscusshowmyskillsandmotivationalignwithyourorganizationsgoals.Sincerely,DavidRaja",
+      "source": "Website"
+        },
+        {
+            "id":2,
+            "userName": "David",
+            "email": "bsdodavid@gmail.com",
+            "phone": "08524082632",
+            "company": "bizmetric",
+            "message": "something",
+            "source": "Website"
+        },
+        {
+            "id":3,
+            "userName": "Mahesh",
+            "email": "bsdodavid@gmail.com",
+            "phone": "08524082632",
+            "company": "bizmetric",
+            "message": "something",
+            "source": "Website"
+        }
+    ]
+
+}
