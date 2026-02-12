@@ -16,6 +16,7 @@ function UserDetails() {
     const [userData, setUserData] = useState<FormFields[]>([]);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [rowData, setRowData] = useState<FormFields>({
+        id:0,
         userName:'',
         email:'',
         phone:'',
@@ -39,6 +40,7 @@ function UserDetails() {
                 variant='contained'
                 size='small'
                 onClick={()=>{setShowModal(true); setRowData({...rowData, 
+                    id:params.row.id,
                     userName:params.row.userName,
                     email:params.row.email,
                     phone:params.row.phone,

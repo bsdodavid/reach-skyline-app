@@ -6,6 +6,7 @@ export interface FormFields {
   company:string;
   message:string;
   source:string;
+  id?:number;
 }
 
 export const USER_FIELD_CONSTANTS:string[] = [
