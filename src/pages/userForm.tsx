@@ -8,13 +8,14 @@ import TextField from '@mui/material/TextField';
 import { useState, type ChangeEvent, type SyntheticEvent } from 'react';
 import { type FormFields } from '../constants/constants';
 import NotifyUsers from './overlays/snackbar';
-import { type SnackbarCloseReason } from '@mui/material/Snackbar';
-
+import { SAVE_USER_API } from '../constants/constants';
+import Loading from './overlays/loading';
 
 function UserForm() {
     const sourceArray:string[] = ['Website', 'Instagram', 'Referral', 'Other'];
     const [messages, setMessages] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const initialState = {
         userName:'',
         email:'',
@@ -57,7 +58,6 @@ function UserForm() {
         const err:string[] = handlemessages();
 
         if(err.length>0){
-            console.log("messages: ", err);
             setIsOpen(true);
             setMessages(err);
             return;
@@ -66,7 +66,8 @@ function UserForm() {
             setIsOpen(false);
         }
 
-        const response = await fetch("http://localhost:3000/save-user", {
+        setIsLoading(true);
+        const response = await fetch(SAVE_USER_API, {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -74,12 +75,12 @@ function UserForm() {
             body: JSON.stringify(userForm),
         })
         if(response && response.status === 200){
+            setIsLoading(false);
             const successMsg:string[] = ["Your application submitted successfully"];
             setMessages(successMsg);
             setIsOpen(true);
             setUserForm(initialState);
         }
-        console.log("res: ", response);
     }
 
     const handlemessages=() =>{
@@ -103,9 +104,6 @@ function UserForm() {
     }
 
     const handleSnackBarClose = () => {
-        console.log("handleClose");
-        
-
         setIsOpen(false);
     };
 
@@ -155,6 +153,7 @@ function UserForm() {
 
             <Button type='submit' sx={{width:1/3, mt:1, alignSelf:'center'}} variant='contained'>Submit</Button>
         </Box>
+        {isLoading && <Loading/>}
         </>
     )
 }

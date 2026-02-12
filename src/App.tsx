@@ -1,9 +1,8 @@
 import './App.css';
 import UserForm from './pages/userForm';
-import NotifyUsers from './pages/overlays/snackbar';
 import UserDetails from './pages/userDetails';
-import { Box, Button } from '@mui/material';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   

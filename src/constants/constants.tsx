@@ -17,3 +17,6 @@ export const USER_FIELD_CONSTANTS:string[] = [
 "Message",
 "Source"
 ]
+
+export const GET_USER_API = "http://localhost:3000/get-user";
+export const SAVE_USER_API = "http://localhost:3000/save-user"

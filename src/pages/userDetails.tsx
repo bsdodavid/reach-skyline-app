@@ -8,8 +8,11 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 import ExpandedList from '../pages/expanderList';
 import { type GridRenderCellParams } from "@mui/x-data-grid";
+import { GET_USER_API } from "../constants/constants";
+import NotifyUsers from "./overlays/snackbar";
 
 function UserDetails() {
+    const message = "No Data Available at the moment, add new data to see changes";
     const [userData, setUserData] = useState<FormFields[]>([]);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [rowData, setRowData] = useState<FormFields>({
@@ -20,6 +23,8 @@ function UserDetails() {
         message:'',
         source:''
     });
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const USER_HEADER_COLUMN:GridColDef<FormFields>[] =[
         { field:"id", headerName: 'ID', width: 30 },
@@ -45,15 +50,25 @@ function UserDetails() {
         )}
         
     ]
-    console.log("showModal", showModal);
+
     const fetchJson = async() => {
-        axios.get<FormFields[]>("http://localhost:3000/get-user").then((res:AxiosResponse)=>{
+        setIsLoading(true);
+        axios.get<FormFields[]>(GET_USER_API).then((res:AxiosResponse)=>{
             if(res.status === 200 && res.data && res.data.users && res.data.users.length > 0){
                 setUserData(res.data.users);
+                setIsOpen(false);
+            } else {
+                setIsOpen(true);
             }
+
+            setIsLoading(false);
             console.log(res.data);
         })
     }
+
+    const handleSnackBarClose = () => {
+        setIsOpen(false);
+    };
 
     useEffect(() => {
         fetchJson();
@@ -62,18 +77,19 @@ function UserDetails() {
 
     return (
         <>
+            {isLoading && <Loading/>}
             {
-            userData && userData.length > 0?
-            (<Paper sx={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    rows={userData}
-                    columns={USER_HEADER_COLUMN}
-                    initialState={{pagination:{paginationModel}}}
-                    pageSizeOptions={[5,10]}
-                    sx={{ border: 0 }}
-                    
-                />
-            </Paper>):<Loading/>
+                userData && userData.length > 0?
+                (<Paper sx={{ height: 400, width: '100%' }}>
+                    <DataGrid
+                        rows={userData}
+                        columns={USER_HEADER_COLUMN}
+                        initialState={{pagination:{paginationModel}}}
+                        pageSizeOptions={[5,10]}
+                        sx={{ border: 0 }}
+                        
+                    />
+                </Paper>):<NotifyUsers message={message} isOpen={isOpen} handleClose={handleSnackBarClose}/>
             }
             {
                 showModal && <ExpandedList user={rowData} modalOpen={showModal} onClose={()=>setShowModal(false)}/>

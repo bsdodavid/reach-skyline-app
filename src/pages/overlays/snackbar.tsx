@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Snackbar, { type SnackbarCloseReason } from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -16,7 +16,6 @@ export default function NotifyUsers({message, isOpen, handleClose}:{message:stri
 
   //   setOpen(false);
   // };
-  console.log("inside snackbar");
 
   const action = (
     <React.Fragment>
