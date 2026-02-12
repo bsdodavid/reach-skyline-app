@@ -48,7 +48,7 @@ function UserDetails() {
                     message:params.row.message,
                     source:params.row.source
                 }); }}
-            >Show message</Button>
+            >Expand row</Button>
         )}
         
     ]
